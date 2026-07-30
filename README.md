@@ -39,7 +39,7 @@
 
 <p align="center">
 <a href="https://genius-study-kit.lovable.app/" target="_blank">
-<img src="https://img.shields.io/badge/⚡%20Open%20FlashGenius-Live%20Demo-black?style=for-the-badge&logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/🔥%20Experience%20FlashGenius-Live%20Demo-FF6B35?style=for-the-badge&logo=firefoxbrowser&logoColor=white" />
 </a>
 </p>
 ---
