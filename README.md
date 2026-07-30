@@ -37,7 +37,9 @@
 
 ## 🌐 Live Demo
 
-👉 **https://genius-study-kit.lovable.app/**
+👉 <a href="https://genius-study-kit.lovable.app/" target="_blank">
+<img src="https://img.shields.io/badge/🚀_Live_Demo-Open-success?style=for-the-badge">
+</a>
 
 ---
 
