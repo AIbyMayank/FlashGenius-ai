@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
+import { AuthModal } from "@/components/AuthModal";
 import { demoStudySet } from "@/lib/study-data";
 import { saveStudySet } from "@/lib/study-store";
 import { generateStudySet } from "@/lib/study.functions";
