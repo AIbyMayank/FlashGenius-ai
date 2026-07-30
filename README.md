@@ -1,6 +1,19 @@
 <p align="center">
   <img src="images/flashgenius.banner.jpg" alt="FlashGenius Banner" width="100%">
 </p>
+<p align="center">
+
+<img src="https://img.shields.io/github/stars/AIbyMayank/FlashGenius-AI?style=for-the-badge" />
+
+<img src="https://img.shields.io/github/forks/AIbyMayank/FlashGenius-AI?style=for-the-badge" />
+
+<img src="https://img.shields.io/github/license/AIbyMayank/FlashGenius-AI?style=for-the-badge" />
+
+<img src="https://img.shields.io/github/v/release/AIbyMayank/FlashGenius-AI?style=for-the-badge" />
+
+<img src="https://img.shields.io/badge/Live-Demo-success?style=for-the-badge" />
+
+</p>
 # 🚀 FlashGenius — AI Flashcard & Quiz Generator
 
 <p align="center">
