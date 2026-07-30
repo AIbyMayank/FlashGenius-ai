@@ -35,6 +35,7 @@ Photosynthesis converts light, CO2 and water into glucose and oxygen.`;
 function Landing() {
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const navigate = useNavigate();
   const generate = useServerFn(generateStudySet);
 
