@@ -11,7 +11,9 @@
 
 <img src="https://img.shields.io/github/v/release/AIbyMayank/FlashGenius-AI?style=for-the-badge" />
 
-<img src="https://img.shields.io/badge/Live-Demo-success?style=for-the-badge" />
+<a href="https://genius-study-kit.lovable.app/" target="_blank">
+<img src="https://img.shields.io/badge/🚀_Live_Demo-Open-success?style=for-the-badge">
+</a>
 
 </p>
 # 🚀 FlashGenius — AI Flashcard & Quiz Generator
