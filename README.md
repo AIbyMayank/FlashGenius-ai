@@ -63,14 +63,48 @@ This project was built to make learning faster, easier, and more engaging.
 
 # 📸 Screenshots
 
-> **Coming Soon**
+## 🏠 Homepage
 
-- 🏠 Homepage
-- 📝 Notes Input
-- 🃏 Flashcards
-- ❓ Quiz
-- 📊 Results
+<p align="center">
+<img src="images/homepage.png" width="100%">
+</p>
 
+---
+
+## 📝 Notes Input
+
+<p align="center">
+<img src="images/notes.png" width="100%">
+</p>
+
+---
+
+## 🃏 AI Questioning
+
+<p align="center">
+<img src="images/Flashback Question.png" width="100%">
+</p>
+
+---
+
+##  ❤️ AI Answering
+
+<p align="center">
+<img src="images/Flashback Answer.png" width="100%">
+
+## ❓ AI Quiz
+
+<p align="center">
+<img src="images/quiz.png" width="100%">
+</p>
+
+---
+
+## 📊 Quiz Results
+
+<p align="center">
+<img src="images/result.png" width="100%">
+</p>
 ---
 
 # 🚀 Getting Started
