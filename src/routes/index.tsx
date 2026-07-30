@@ -70,12 +70,25 @@ function Landing() {
       <div className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[70vh]" />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-2xl flex-col px-5 py-10 sm:py-16">
-        <header className="flex items-center gap-2">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary font-display text-base font-bold text-primary-foreground">
-            F
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">FlashGenius</span>
+        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary font-display text-base font-bold text-primary-foreground">
+              F
+            </span>
+            <span className="truncate font-display text-lg font-bold tracking-tight">
+              FlashGenius
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setAuthOpen(true)}
+            className="shrink-0 rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+          >
+            Login
+          </button>
         </header>
+
+        <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
 
         <section className="mt-14 sm:mt-20">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
