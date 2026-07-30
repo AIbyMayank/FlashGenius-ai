@@ -37,9 +37,9 @@
 
 ## 🌐 Live Demo
 
-👉<p align="center">
+<p align="center">
 <a href="https://genius-study-kit.lovable.app/" target="_blank">
-<img src="https://img.shields.io/badge/🚀%20Launch%20FlashGenius-Live%20Demo-7C3AED?style=for-the-badge&logo=googlechrome&logoColor=white" />
+<img src="https://img.shields.io/badge/⚡%20Open%20FlashGenius-Live%20Demo-black?style=for-the-badge&logo=github&logoColor=white" />
 </a>
 </p>
 ---
