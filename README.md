@@ -126,46 +126,6 @@ This project was built to make learning faster, easier, and more engaging.
 </p>
 ---
 
-# 🚀 Getting Started
-
-Clone the repository
-
-```bash
-git clone https://github.com/AIbyMayank/flashgenius-ai.git
-```
-
-Go into the project
-
-```bash
-cd flashgenius-ai
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run the development server
-
-```bash
-npm run dev
-```
-
----
-
-# 📂 Project Structure
-
-```
-src/
-components/
-pages/
-hooks/
-public/
-```
-
----
-
 # 🎯 Future Improvements
 
 - 🔐 User Authentication
@@ -188,7 +148,7 @@ If you'd like to improve this project, feel free to fork the repository and subm
 
 ---
 
-# 👨‍💻 Author
+# 👨‍💻 Developer
 
 ### Mayank Duwedi
 
