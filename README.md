@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="images/flashgenius.banner.jpg" alt="FlashGenius Banner" width="100%">
+</p>
 # 🚀 FlashGenius — AI Flashcard & Quiz Generator
 
 <p align="center">
