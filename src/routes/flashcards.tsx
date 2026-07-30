@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { flashcards } from "@/lib/study-data";
+import { useEffect, useState } from "react";
+import { demoStudySet, type StudySet } from "@/lib/study-data";
+import { loadStudySet } from "@/lib/study-store";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -8,12 +9,12 @@ export const Route = createFileRoute("/flashcards")({
       { title: "Flashcards — FlashGenius" },
       {
         name: "description",
-        content: "Flip through your generated flashcards and track your progress card by card.",
+        content: "Flip through the flashcards generated from your notes and track your progress.",
       },
       { property: "og:title", content: "Flashcards — FlashGenius" },
       {
         property: "og:description",
-        content: "Tap to flip, swipe through your deck, and review your notes fast.",
+        content: "Tap to flip through your deck and review your notes fast.",
       },
     ],
   }),
@@ -21,14 +22,22 @@ export const Route = createFileRoute("/flashcards")({
 });
 
 function FlashcardsPage() {
+  const [set, setSet] = useState<StudySet>(demoStudySet);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const card = flashcards[index];
-  const progress = ((index + 1) / flashcards.length) * 100;
+
+  useEffect(() => {
+    const stored = loadStudySet();
+    if (stored) setSet(stored);
+  }, []);
+
+  const cards = set.flashcards;
+  const card = cards[Math.min(index, cards.length - 1)];
+  const progress = ((index + 1) / cards.length) * 100;
 
   const go = (delta: number) => {
     setFlipped(false);
-    setIndex((i) => Math.min(flashcards.length - 1, Math.max(0, i + delta)));
+    setIndex((i) => Math.min(cards.length - 1, Math.max(0, i + delta)));
   };
 
   return (
@@ -41,9 +50,9 @@ function FlashcardsPage() {
           >
             Back
           </Link>
-          <h1 className="truncate text-center text-sm font-semibold">Flashcards</h1>
+          <h1 className="truncate text-center text-sm font-semibold">{set.title}</h1>
           <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-            {index + 1} of {flashcards.length}
+            {index + 1} of {cards.length}
           </span>
         </header>
 
@@ -58,11 +67,9 @@ function FlashcardsPage() {
           type="button"
           onClick={() => setFlipped((f) => !f)}
           aria-label="Flip card"
-          className="flip-scene mt-8 w-full flex-1"
+          className="flip-scene mt-8 w-full"
         >
-          <div
-            className={`flip-inner relative h-80 w-full ${flipped ? "is-flipped" : ""}`}
-          >
+          <div className={`flip-inner relative h-80 w-full ${flipped ? "is-flipped" : ""}`}>
             <div className="flip-face absolute inset-0 flex flex-col items-center justify-center rounded-3xl border border-border bg-card p-7 text-center">
               <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 Question
@@ -89,7 +96,7 @@ function FlashcardsPage() {
           >
             Previous
           </button>
-          {index === flashcards.length - 1 ? (
+          {index === cards.length - 1 ? (
             <Link
               to="/quiz"
               className="flex items-center justify-center rounded-2xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition hover:brightness-110"

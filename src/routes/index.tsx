@@ -1,5 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
+import { toast } from "sonner";
+import { demoStudySet } from "@/lib/study-data";
+import { saveStudySet } from "@/lib/study-store";
+import { generateStudySet } from "@/lib/study.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -8,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Paste your class notes and instantly study with flip flashcards and multiple-choice quizzes. Minimal, dark, mobile-first.",
+          "Paste your class notes and instantly get AI flashcards and a multiple-choice quiz across three difficulty levels.",
       },
       { property: "og:title", content: "FlashGenius — Study smarter from your notes" },
       {
@@ -20,12 +25,45 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const SAMPLE = `Mitosis produces two identical daughter cells.
-Osmosis moves water across a semipermeable membrane.
-ATP is the energy currency of the cell.`;
+const SAMPLE = `Mitosis produces two genetically identical daughter cells and is preceded by DNA replication.
+Osmosis is the movement of water across a semipermeable membrane toward higher solute concentration.
+ATP is the energy currency of the cell and is produced mainly by mitochondria during aerobic respiration.
+Enzymes are protein catalysts that lower the activation energy of reactions.
+Photosynthesis converts light, CO2 and water into glucose and oxygen.`;
 
 function Landing() {
   const [notes, setNotes] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const generate = useServerFn(generateStudySet);
+
+  const onGenerate = async () => {
+    if (notes.trim().length < 20) {
+      toast.error("Add a bit more text — at least a couple of sentences.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const set = await generate({ data: { notes: notes.trim() } });
+      if (!set.flashcards.length || !set.quiz.length) {
+        throw new Error("Empty study set");
+      }
+      saveStudySet(set);
+      navigate({ to: "/flashcards" });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      if (message.includes("429")) toast.error("Rate limited — try again in a moment.");
+      else if (message.includes("402")) toast.error("AI credits exhausted. Add credits to continue.");
+      else toast.error("Couldn't generate a study set. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const useDemo = () => {
+    saveStudySet(demoStudySet);
+    navigate({ to: "/flashcards" });
+  };
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -49,8 +87,8 @@ function Landing() {
             Learn them tonight.
           </h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            FlashGenius turns messy lecture notes into flip cards and quick quizzes — so revision
-            takes minutes, not evenings.
+            FlashGenius turns messy lecture notes into 10 flip cards and a 15-question quiz across
+            easy, medium and hard levels.
           </p>
         </section>
 
@@ -62,8 +100,9 @@ function Landing() {
             id="notes"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
+            disabled={loading}
             placeholder="Paste your notes here…"
-            className="min-h-56 w-full resize-y rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-card-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary/60 focus:ring-4 focus:ring-primary/10"
+            className="min-h-56 w-full resize-y rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-card-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary/60 focus:ring-4 focus:ring-primary/10 disabled:opacity-60"
           />
 
           <div className="mt-3 flex items-center justify-between gap-3">
@@ -79,30 +118,28 @@ function Landing() {
             </span>
           </div>
 
-          <Link
-            to="/flashcards"
-            className="mt-5 flex h-13 w-full items-center justify-center rounded-2xl bg-primary py-4 font-display text-sm font-bold tracking-wide text-primary-foreground transition hover:brightness-110 active:scale-[0.99]"
+          <button
+            type="button"
+            onClick={onGenerate}
+            disabled={loading}
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-4 font-display text-sm font-bold tracking-wide text-primary-foreground transition hover:brightness-110 active:scale-[0.99] disabled:opacity-70"
           >
-            Generate study set
-          </Link>
+            {loading && (
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            )}
+            {loading ? "Generating study set…" : "Generate study set"}
+          </button>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <Link
-              to="/flashcards"
-              className="rounded-2xl border border-border bg-card px-4 py-3 text-center text-sm font-medium transition hover:border-primary/50"
-            >
-              Flashcards
-            </Link>
-            <Link
-              to="/quiz"
-              className="rounded-2xl border border-border bg-card px-4 py-3 text-center text-sm font-medium transition hover:border-primary/50"
-            >
-              Quiz
-            </Link>
-          </div>
+          <button
+            type="button"
+            onClick={useDemo}
+            className="mt-3 w-full rounded-2xl border border-border bg-card px-4 py-3 text-center text-sm font-medium transition hover:border-primary/50"
+          >
+            Skip — open the demo set
+          </button>
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Demo set loaded — AI generation coming soon.
+            Powered by Lovable AI. Questions stay grounded in your notes.
           </p>
         </section>
       </div>
