@@ -1,14 +1,34 @@
-# Welcome to your Lovable project
+# FlashGenius Study Buddy
+
+Build a study app called "FlashGenius" with:
+
+- A clean landing page with a large textarea to
+
+  paste notes and a "Generate" button
+
+- A flashcards screen: cards flip on click,
+
+  progress bar on top (card 3 of 10)
+
+- A quiz screen: MCQs with instant right/wrong
+
+  feedback and a final score page
+
+- Dark mode, mobile-first, minimal design
+
+Use dummy data first. I will connect AI later.
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://genius-study-kit.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/1a1858c8-3d7a-4ee9-9e82-915ebf6d34cd).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +40,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
