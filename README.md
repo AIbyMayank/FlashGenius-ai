@@ -66,7 +66,7 @@ This project was built to make learning faster, easier, and more engaging.
 ## 🏠 Homepage
 
 <p align="center">
-<img src="images/homepage.png" width="100%">
+<img src="images/HomePage.png" width="100%">
 </p>
 
 ---
@@ -74,7 +74,7 @@ This project was built to make learning faster, easier, and more engaging.
 ## 📝 Notes Input
 
 <p align="center">
-<img src="images/notes.png" width="100%">
+<img src="images/Notes.png" width="100%">
 </p>
 
 ---
@@ -95,7 +95,7 @@ This project was built to make learning faster, easier, and more engaging.
 ## ❓ AI Quiz
 
 <p align="center">
-<img src="images/quiz.png" width="100%">
+<img src="images/Quiz.png" width="100%">
 </p>
 
 ---
@@ -103,7 +103,7 @@ This project was built to make learning faster, easier, and more engaging.
 ## 📊 Quiz Results
 
 <p align="center">
-<img src="images/result.png" width="100%">
+<img src="images/Result.png" width="100%">
 </p>
 ---
 
