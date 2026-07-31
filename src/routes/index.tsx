@@ -3,9 +3,12 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AuthModal } from "@/components/AuthModal";
+import { useAuth } from "@/hooks/useAuth";
 import { demoStudySet } from "@/lib/study-data";
 import { saveStudySet } from "@/lib/study-store";
 import { generateStudySet } from "@/lib/study.functions";
+import { saveStudySetToCloud } from "@/lib/study-sets.functions";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
