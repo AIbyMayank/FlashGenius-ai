@@ -102,11 +102,25 @@ function Landing() {
             </span>
           </div>
           {user ? (
-            <div className="flex shrink-0 items-center gap-2">
+            <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => navigate({ to: "/upload" })}
+                className="rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary sm:px-4"
+              >
+                Upload PDF
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate({ to: "/documents" })}
+                className="rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary sm:px-4"
+              >
+                Documents
+              </button>
               <button
                 type="button"
                 onClick={() => navigate({ to: "/library" })}
-                className="rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+                className="rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary sm:px-4"
               >
                 Library
               </button>
