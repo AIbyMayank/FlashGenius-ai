@@ -28,7 +28,7 @@ export async function extractPdfText(
     if (pageText) parts.push(pageText);
     onProgress?.(i, doc.numPages);
   }
-  await doc.destroy();
+  await doc.cleanup();
 
   const text = parts.join("\n\n").trim();
   // A text PDF yields far more than a handful of characters per page.
