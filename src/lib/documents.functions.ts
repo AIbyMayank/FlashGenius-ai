@@ -1,42 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import type { Difficulty, StudySet } from "./study-data";
-
-export type DocumentSummary = {
-  id: string;
-  fileName: string;
-  storagePath: string;
-  uploadedAt: string;
-  status: string;
-  title: string | null;
-  error: string | null;
-  flashcardCount: number;
-  quizCount: number;
-};
-
-export type DocumentDetail = {
-  id: string;
-  fileName: string;
-  uploadedAt: string;
-  status: string;
-  title: string | null;
-  summary: string | null;
-  flashcards: { front: string; back: string }[];
-  quiz: {
-    difficulty: Difficulty;
-    prompt: string;
-    options: string[];
-    correctIndex: number;
-    explanation: string;
-  }[];
-  importantQuestions: { question: string; answer: string }[];
-  formulas: { name: string; formula: string; meaning: string }[];
-  definitions: { term: string; definition: string }[];
-  examNotes: string[];
-};
-
-const asArray = <T,>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+import { asArray } from "./documents-shared";
+import type { DocumentDetail, DocumentSummary } from "./documents-shared";
 
 export const createDocumentRecord = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -208,18 +174,3 @@ export const deleteMyDocument = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
-
-export function documentToStudySet(doc: DocumentDetail): StudySet {
-  return {
-    title: doc.title ?? doc.fileName,
-    flashcards: doc.flashcards.map((c, i) => ({ id: i + 1, ...c })),
-    quiz: doc.quiz.map((q, i) => ({
-      id: i + 1,
-      difficulty: q.difficulty,
-      prompt: q.prompt,
-      options: q.options,
-      answerIndex: Math.min(3, Math.max(0, q.correctIndex)),
-      explanation: q.explanation,
-    })),
-  };
-}
