@@ -41,6 +41,8 @@ function Landing() {
   const [authOpen, setAuthOpen] = useState(false);
   const navigate = useNavigate();
   const generate = useServerFn(generateStudySet);
+  const persist = useServerFn(saveStudySetToCloud);
+  const { user, signOut } = useAuth();
 
   const onGenerate = async () => {
     if (notes.trim().length < 20) {
@@ -54,6 +56,21 @@ function Landing() {
         throw new Error("Empty study set");
       }
       saveStudySet(set);
+      if (user) {
+        try {
+          await persist({
+            data: {
+              title: set.title,
+              notes: notes.trim(),
+              flashcards: set.flashcards,
+              quiz: set.quiz,
+            },
+          });
+          toast.success("Saved to your library.");
+        } catch {
+          toast.error("Generated, but couldn't save it to your library.");
+        }
+      }
       navigate({ to: "/flashcards" });
     } catch (error) {
       const message = error instanceof Error ? error.message : "";
@@ -84,13 +101,37 @@ function Landing() {
               FlashGenius
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => setAuthOpen(true)}
-            className="shrink-0 rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
-          >
-            Login
-          </button>
+          {user ? (
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                onClick={() => navigate({ to: "/library" })}
+                className="rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+              >
+                Library
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  await signOut();
+                  toast.success("Signed out.");
+                }}
+                className="rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setAuthOpen(true)}
+              className="shrink-0 rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+            >
+              Login
+            </button>
+          )}
+        </header>
+
         </header>
 
         <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
