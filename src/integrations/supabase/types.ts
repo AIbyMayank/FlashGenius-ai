@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      documents: {
+        Row: {
+          created_at: string
+          definitions: Json
+          error: string | null
+          exam_notes: Json
+          extracted_text: string | null
+          file_name: string
+          flashcards: Json
+          formulas: Json
+          id: string
+          important_questions: Json
+          quiz: Json
+          status: string
+          storage_path: string
+          summary: string | null
+          title: string | null
+          updated_at: string
+          uploaded_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          definitions?: Json
+          error?: string | null
+          exam_notes?: Json
+          extracted_text?: string | null
+          file_name: string
+          flashcards?: Json
+          formulas?: Json
+          id?: string
+          important_questions?: Json
+          quiz?: Json
+          status?: string
+          storage_path: string
+          summary?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          definitions?: Json
+          error?: string | null
+          exam_notes?: Json
+          extracted_text?: string | null
+          file_name?: string
+          flashcards?: Json
+          formulas?: Json
+          id?: string
+          important_questions?: Json
+          quiz?: Json
+          status?: string
+          storage_path?: string
+          summary?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
