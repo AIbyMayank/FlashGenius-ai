@@ -132,7 +132,7 @@ function Landing() {
           )}
         </header>
 
-        </header>
+
 
         <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
 
