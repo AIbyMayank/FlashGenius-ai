@@ -210,6 +210,31 @@ function Landing() {
 
           <button
             type="button"
+            onClick={goToUpload}
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-border bg-card px-4 py-3 text-center text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+              <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+              <path d="M12 12v6" />
+              <path d="m9 15 3-3 3 3" />
+            </svg>
+            Upload a PDF
+          </button>
+
+          <button
+            type="button"
             onClick={useDemo}
             className="mt-3 w-full rounded-2xl border border-border bg-card px-4 py-3 text-center text-sm font-medium transition hover:border-primary/50"
           >
