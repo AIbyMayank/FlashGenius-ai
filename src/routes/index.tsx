@@ -87,6 +87,11 @@ function Landing() {
     navigate({ to: "/flashcards" });
   };
 
+  const goToUpload = () => {
+    if (user) navigate({ to: "/upload" });
+    else setAuthOpen(true);
+  };
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <div className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[70vh]" />
